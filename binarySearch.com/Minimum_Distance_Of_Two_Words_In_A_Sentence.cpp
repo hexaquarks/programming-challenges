@@ -59,5 +59,5 @@ int solve(string text, string word0, string word1) {
             j = k;
         }
     }
-    return ans == INT_MAX ? -1 : ans;
+    return ans == std::numeric_limits<int>::max ? -1 : ans;
 }
