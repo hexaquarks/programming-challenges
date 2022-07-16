@@ -23,4 +23,8 @@ int solve(vector<vector<string>>& contacts)
         if (!found) ++ans;
     }
     return ans;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e11b97cac4424f468d82a8e424be5a699019368f
