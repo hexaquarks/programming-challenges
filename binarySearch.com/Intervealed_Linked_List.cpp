@@ -1,5 +1,6 @@
 class LLNode {
     public:
+        LLNode(int);
         int val;
         LLNode *next;
 };

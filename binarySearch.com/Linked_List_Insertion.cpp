@@ -1,11 +1,12 @@
 
 class LLNode {
     public:
+        LLNode(int);
         int val;
         LLNode *next;
 };
 
-/* My solution - Faster than 40% */
+/* My solution - Faster than 47% */
 LLNode* solve(LLNode* l0, LLNode* l1) 
 {
     LLNode result(0);
