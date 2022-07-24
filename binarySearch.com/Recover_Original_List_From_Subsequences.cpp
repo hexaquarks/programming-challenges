@@ -7,10 +7,9 @@
 using namespace std;
 
 /* My solution - faster than 35 %*/
-void dfs(int v, vector<bool>& visited, map<int, unordered_set<int>>& adj, vector<int>& ans)
+void dfs(int v, vector<bool>& visited, unordered_map<int, unordered_set<int>>& adj, vector<int>& ans)
 {
     visited[v] = true;
-    // if (adj[v].size() == 0) return;
     for (int u : adj[v])
     {
         if (!visited[u]) dfs(u, visited, adj, ans);
@@ -25,7 +24,7 @@ vector<int> solve(vector<vector<int>>& lists)
     int m = lists[0].size();
     if (!m) return {};
 
-    map<int, unordered_set<int>> adj;
+    unordered_map<int, unordered_set<int>> adj;
     unordered_set<int> nums;
 
     // constructing adjency list
@@ -50,14 +49,15 @@ vector<int> solve(vector<vector<int>>& lists)
     visited.assign(nn, false);
     ans.clear();
     
-    for (const auto &[key, vec] : adj)
+    for (const int& num : nums)
     {
-        if (!visited[key]) dfs(key, visited, adj, ans);
+        if (!visited[num]) dfs(num, visited, adj, ans);
     }
 
     reverse(ans.begin(), ans.end());
     return ans;
 }
+
 
 /* Much faster solution */
 vector<int> solve(vector<vector<int>>& lists) {
