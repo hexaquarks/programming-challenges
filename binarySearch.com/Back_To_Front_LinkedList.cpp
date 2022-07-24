@@ -1,5 +1,6 @@
 class LLNode {
     public:
+        LLNode(int);
         int val;
         LLNode *next;
 };
@@ -8,7 +9,7 @@ class LLNode {
  /* My solution - faster than 40% */
 LLNode* reverse(LLNode*& node)
 {
-    LLNode* curr = node, *temp = nullptr, *prev = nullptr;
+    LLNode* curr = node, *prev = nullptr, *temp = nullptr;
 
     while (curr)
     {
@@ -17,46 +18,37 @@ LLNode* reverse(LLNode*& node)
         prev = curr;
         curr = temp;
     }
-
     return prev;
 }
-
 LLNode* solve(LLNode* node) 
 {
-    if (!node) return nullptr;
     LLNode* curr = node, *slow = node, *fast = node;
-    
-    int n = 0;
-    while (fast && fast->next) 
+    LLNode* result = new LLNode(-1);
+    LLNode* pResult = result;
+
+    while (fast && fast->next)    
     {
         slow = slow->next;
         fast = fast->next->next;
-        ++n;
     }
-    if (!n) return node;
-
     LLNode* rev = reverse(slow);
-    while (node && node->next != slow) node = node->next;
-    node->next = nullptr;
-
-    LLNode* ans = new LLNode(-1);
-    LLNode* pAns = ans;
-
-    int counter = 0;
-    while (rev || curr)
+    
+    int count = 0;
+    while (curr != slow || rev) 
     {
-        if (counter % 2 == 0)
+        if (count % 2 == 0) 
         {
-            ans->next = new LLNode(rev->val);
+            result->next = new LLNode(rev->val);
+            result = result->next;
             rev = rev->next;
         }
-        else 
+        else
         {
-            ans->next = new LLNode(curr->val);
+            result->next = new LLNode(curr->val);
+            result = result->next;
             curr = curr->next;
         }
-        ans = ans->next;
-        ++counter;
+        ++count;
     }
-    return pAns->next;
+    return pResult->next;
 }
