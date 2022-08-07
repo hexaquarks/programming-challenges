@@ -40,3 +40,19 @@ int solve(Tree* root)
     DFS(root, v);
     return ans;
 }
+
+/* Accepted faster solution - faster than 95% */
+int mx = 0;
+
+void findLargest(Tree* node, int n, int x) {
+    mx = max(mx, max(abs(node->val - n), abs(node->val - x)));
+    if (node->left) findLargest(node->left, min(n, node->val), max(x, node->val));
+    if (node->right) findLargest(node->right, min(n, node->val), max(x, node->val));
+}
+
+int solve(Tree* root) {
+    if (!root) return 0;
+    mx = 0;
+    findLargest(root, root->val, root->val);
+    return mx;
+}
