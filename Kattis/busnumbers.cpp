@@ -15,7 +15,6 @@ int main()
         stops.push_back(val);
     }
     sort(stops.begin(), stops.end());
-    // 141 145 143 150
     for (int i = 0; i < stops.size(); ++i)
     {
         int left = stops[i];
