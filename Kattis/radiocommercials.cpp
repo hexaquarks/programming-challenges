@@ -15,7 +15,7 @@ int main()
     while (n--) 
     { 
         int temp; cin >> temp;
-        temp -= 20;
+        temp -= p;
         v.push_back(temp);
     }
     
