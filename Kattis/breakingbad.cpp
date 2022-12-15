@@ -20,7 +20,7 @@ int getIndex(const string& s, const vector<string>& v)
     else {assert(true); return -1;}
 }
 
-bool bfs(
+bool dfs(
     const vector<vector<int>>& adj, 
     vector<int>& color, 
     const int u, 
@@ -32,7 +32,7 @@ bool bfs(
         if (color[v] == -1)
         {
             color[v] = 1 - c;
-            if (!bfs(adj, color, v, 1 - c)) return false;
+            if (!dfs(adj, color, v, 1 - c)) return false;
         }
         else if (color[v] == c) return false;
     }
@@ -66,7 +66,7 @@ int main()
     {
         if (color[i] == -1)
         {
-            if (!bfs(adj, color, i, 0))
+            if (!dfs(adj, color, i, 0))
             {
                 cout << "impossible" << endl;
                 return 0;
